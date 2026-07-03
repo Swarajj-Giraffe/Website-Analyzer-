@@ -6,7 +6,7 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-TELEGRAM_API = "https://api.telegram.org/bot{token}/sendMessage"
+TELEGRAM_API = "https://api.telegram.org/bot8829418542:AAH9V5aMaGFa4pYjea7u09qbrn-kXSSes_o/sendMessage"
 
 EMOJI_OVERDUE = "🔴"
 EMOJI_URGENT = "🟡"
