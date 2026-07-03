@@ -1,0 +1,51 @@
+name: Deadline Monitor
+
+on:
+  schedule:
+    # Runs every day at 08:00 UTC
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+    inputs:
+      send_summary:
+        description: "Send daily digest?"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit state.json back
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DAYS_WARNING_THRESHOLD: "7"
+        run: |
+          if [ "${{ github.event.inputs.send_summary }}" = "true" ]; then
+            python monitor.py --summary
+          else
+            python monitor.py
+          fi
+
+      - name: Commit updated state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git diff --cached --quiet || git commit -m "chore: update deadline state [skip ci]"
+          git push
