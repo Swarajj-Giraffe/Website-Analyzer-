@@ -1,7 +1,19 @@
 [
   {
-    "name": "Example Magazine",
-    "url": "https://example-magazine.com/advertise",
-    "keywords": [ "deadline","entry","entries","awards"
-    "notify_days": [14, 7, 3, 1, 0]
+    "name": "Adspur",
+    "url": "https://www.adspur.com/",
+    "keywords": [
+      "deadline",
+      "entry",
+      "entries",
+      "awards"
+    ],
+    "notify_days": [
+      14,
+      7,
+      3,
+      1,
+      0
+    ]
   }
+]
