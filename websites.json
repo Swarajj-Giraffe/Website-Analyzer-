@@ -2,18 +2,6 @@
   {
     "name": "Example Magazine",
     "url": "https://example-magazine.com/advertise",
-    "selector": ".submission-info",
+    "keywords": [ "deadline","entry","entries","awards"
     "notify_days": [14, 7, 3, 1, 0]
   },
-  {
-    "name": "Industry Weekly",
-    "url": "https://industryweekly.com/ad-deadlines",
-    "notify_days": [7, 3, 1]
-  },
-  {
-    "name": "Trade Show Listings",
-    "url": "https://tradeshow.example.org/submit",
-    "selector": "#deadline-section",
-    "notify_days": [30, 14, 7, 0]
-  }
-]
